@@ -36,12 +36,12 @@ class TTSTokenizer:
 
     def __init__(
         self,
-        use_phonemes=False,
+        use_phonemes: bool = False,
         text_cleaner: Callable = None,
         characters: "BaseCharacters" = None,
         phonemizer: Union["Phonemizer", Dict] = None,
         add_blank: bool = False,
-        use_eos_bos=False,
+        use_eos_bos: bool = False,
     ):
         self.text_cleaner = text_cleaner
         self.use_phonemes = use_phonemes

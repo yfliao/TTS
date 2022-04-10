@@ -11,6 +11,7 @@ def parse_symbols():
         "bos": _bos,
         "characters": _characters,
         "punctuations": _punctuations,
+        "tones": _tones,
         "phonemes": _phonemes,
     }
 
@@ -20,8 +21,10 @@ _pad = "<PAD>"
 _eos = "<EOS>"
 _bos = "<BOS>"
 _blank = "<BLNK>"  # TODO: check if we need this alongside with PAD
-_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+#_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+_characters = "abcdefghijklmnopqrstuvwxyz"
 _punctuations = "!'(),-.:;? "
+_tones = "0123456789"
 
 
 # DEFAULT SET OF IPA PHONEMES
@@ -115,7 +118,7 @@ class BaseCharacters:
 
         Every new character class should inherit from this.
 
-        Characters are oredered as follows ```[PAD, EOS, BOS, BLANK, CHARACTERS, PUNCTUATIONS]```.
+        Characters are oredered as follows ```[PAD, EOS, BOS, BLANK, CHARACTERS, PUNCTUATIONS, TONES]```.
 
         If you need a custom order, you need to define inherit from this class and override the ```_create_vocab``` method.
 
@@ -125,6 +128,9 @@ class BaseCharacters:
 
             punctuations (str):
                 Characters to be treated as punctuation.
+
+            tones (str):
+                Characters to be treated as tone marks.
 
             pad (str):
                 Special padding character that would be ignored by the model.
@@ -149,6 +155,7 @@ class BaseCharacters:
         self,
         characters: str = None,
         punctuations: str = None,
+        tones: str = None,
         pad: str = None,
         eos: str = None,
         bos: str = None,
@@ -158,6 +165,7 @@ class BaseCharacters:
     ) -> None:
         self._characters = characters
         self._punctuations = punctuations
+        self._tones = tones
         self._pad = pad
         self._eos = eos
         self._bos = bos
@@ -190,6 +198,15 @@ class BaseCharacters:
     @punctuations.setter
     def punctuations(self, punctuations):
         self._punctuations = punctuations
+        self._create_vocab()
+
+    @property
+    def tones(self):
+        return self._tones
+
+    @tones.setter
+    def tones(self, tones):
+        self._tones = tones
         self._create_vocab()
 
     @property
@@ -255,7 +272,7 @@ class BaseCharacters:
         _vocab = [self._bos] + _vocab if self._bos is not None and len(self._bos) > 0 else _vocab
         _vocab = [self._eos] + _vocab if self._eos is not None and len(self._eos) > 0 else _vocab
         _vocab = [self._pad] + _vocab if self._pad is not None and len(self._pad) > 0 else _vocab
-        self.vocab = _vocab + list(self._punctuations)
+        self.vocab = _vocab + list(self._punctuations) + list(self._tones)
         if self.is_unique:
             duplicates = {x for x in self.vocab if self.vocab.count(x) > 1}
             assert (
@@ -278,6 +295,7 @@ class BaseCharacters:
         indent = "\t" * level
         print(f"{indent}| > Characters: {self._characters}")
         print(f"{indent}| > Punctuations: {self._punctuations}")
+        print(f"{indent}| > Tones: {self._tones}")
         print(f"{indent}| > Pad: {self._pad}")
         print(f"{indent}| > EOS: {self._eos}")
         print(f"{indent}| > BOS: {self._bos}")
@@ -303,6 +321,7 @@ class BaseCharacters:
         return CharactersConfig(
             characters=self._characters,
             punctuations=self._punctuations,
+            tones=self._tones,
             pad=self._pad,
             eos=self._eos,
             bos=self._bos,
@@ -324,6 +343,9 @@ class IPAPhonemes(BaseCharacters):
 
         punctuations (str):
             Characters to be treated as punctuation. Defaults to `_punctuations`.
+
+        tones (str):
+            Characters to be treated as tone mark. Defaults to `_tones`.
 
         pad (str):
             Special padding character that would be ignored by the model. Defaults to `_pad`.
@@ -348,6 +370,7 @@ class IPAPhonemes(BaseCharacters):
         self,
         characters: str = _phonemes,
         punctuations: str = _punctuations,
+        tones: str = _tones,
         pad: str = _pad,
         eos: str = _eos,
         bos: str = _bos,
@@ -355,7 +378,7 @@ class IPAPhonemes(BaseCharacters):
         is_unique: bool = False,
         is_sorted: bool = True,
     ) -> None:
-        super().__init__(characters, punctuations, pad, eos, bos, blank, is_unique, is_sorted)
+        super().__init__(characters, punctuations, tones, pad, eos, bos, blank, is_unique, is_sorted)
 
     @staticmethod
     def init_from_config(config: "Coqpit"):
@@ -372,6 +395,7 @@ class IPAPhonemes(BaseCharacters):
                 IPAPhonemes(
                     characters=config.characters["characters"],
                     punctuations=config.characters["punctuations"],
+                    tones=config.characters["tones"],
                     pad=config.characters["pad"],
                     eos=config.characters["eos"],
                     bos=config.characters["bos"],
@@ -403,6 +427,9 @@ class Graphemes(BaseCharacters):
         punctuations (str):
             Characters to be treated as punctuation. Defaults to `_punctuations`.
 
+        tones (str):
+            Characters to be treated as tone mark. Defaults to `_tones`.
+
         pad (str):
             Special padding character that would be ignored by the model. Defaults to `_pad`.
 
@@ -423,6 +450,7 @@ class Graphemes(BaseCharacters):
         self,
         characters: str = _characters,
         punctuations: str = _punctuations,
+        tones: str = _tones,
         pad: str = _pad,
         eos: str = _eos,
         bos: str = _bos,
@@ -430,7 +458,7 @@ class Graphemes(BaseCharacters):
         is_unique: bool = False,
         is_sorted: bool = True,
     ) -> None:
-        super().__init__(characters, punctuations, pad, eos, bos, blank, is_unique, is_sorted)
+        super().__init__(characters, punctuations, tones, pad, eos, bos, blank, is_unique, is_sorted)
 
     @staticmethod
     def init_from_config(config: "Coqpit"):
@@ -446,6 +474,7 @@ class Graphemes(BaseCharacters):
                     Graphemes(
                         characters=config.characters["characters"],
                         punctuations=config.characters["punctuations"],
+                        tones=config.characters["tones"],
                         pad=config.characters["pad"],
                         eos=config.characters["eos"],
                         bos=config.characters["bos"],

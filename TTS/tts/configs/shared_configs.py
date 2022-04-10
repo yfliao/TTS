@@ -79,6 +79,9 @@ class CharactersConfig(Coqpit):
         punctuations (str):
             characters considered as punctuation as parsing the input sentence. Defaults to None.
 
+        tones (str):
+            characters considered as tone as parsing the input sentence. Defaults to None.
+
         phonemes (str):
             characters considered as parsing phonemes. This is only for backwards compat. Use `characters` for new
             models. Defaults to None.
@@ -103,6 +106,7 @@ class CharactersConfig(Coqpit):
     blank: str = None
     characters: str = None
     punctuations: str = None
+    tones: str = None
     phonemes: str = None
     is_unique: bool = True  # for backwards compatibility of models trained with char sets with duplicates
     is_sorted: bool = True

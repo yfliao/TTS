@@ -42,6 +42,10 @@ def remove_aux_symbols(text):
     text = re.sub(r"[\<\>\(\)\[\]\"]+", "", text)
     return text
 
+def remove_punctuations(text):
+    text = re.sub(r'[^\w\s]', '', text)
+    return text
+
 
 def replace_symbols(text, lang="en"):
     text = text.replace(";", ",")
@@ -140,6 +144,13 @@ def multilingual_cleaners(text):
     """Pipeline for multilingual text"""
     text = lowercase(text)
     text = replace_symbols(text, lang=None)
+    text = remove_aux_symbols(text)
+    text = collapse_whitespace(text)
+    return text
+
+def hakka_cleaners(text):
+    """Pipeline for multilingual text"""
+    text = lowercase(text)
     text = remove_aux_symbols(text)
     text = collapse_whitespace(text)
     return text
