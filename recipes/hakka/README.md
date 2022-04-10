@@ -15,4 +15,4 @@ tts --text "ngai11 ham55 bun24 ng11 tang24 loi11 io24 ." --model_path tacotron2-
 
 ## Remark
 
-* To mitigate the impact of configuration inconsistencies between different recording sessions, some compromises have been made (please check the code or config.json).
+* To mitigate the impact of configuration inconsistencies between different recording sessions, some compromises have been made (mainly, mel_max=4000, please check the code or config.json).
