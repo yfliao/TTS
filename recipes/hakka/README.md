@@ -8,6 +8,10 @@
 ```
 tts --text "ngai11 ham55 bun24 ng11 tang24 loi11 io24 ." --model_path tacotron2-DDC/best_model.pth --config_path tacotron2-DDC/config.json --out_path speech.wav
 ```
+## Sample Voice
+
+1. https://drive.google.com/file/d/1Xqet4ht0QcNau0c-EH3LPJW_rkub4tCp/view?usp=sharing
+
 
 ## For running the recipes
 
