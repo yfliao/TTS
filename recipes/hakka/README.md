@@ -1,9 +1,9 @@
 # 🐸💬 TTS Hakka Recipes
 
-## Pre-trained "tacotron2-DDC" model: https://drive.google.com/drive/folders/1zK6j2nmbGKV8q6rPQXbTI_MUtfqTOimT?usp=sharing
+## Pre-trained "tacotron2-DDC" model
 
-1. download the pre-trained model from
-2. synthesis
+1. download the pre-trained model from https://drive.google.com/drive/folders/1zK6j2nmbGKV8q6rPQXbTI_MUtfqTOimT?usp=sharing
+2. synthesis command
 
 ```
 tts --text "ngai11 ham55 bun24 ng11 tang24 loi11 io24 ." --model_path tacotron2-DDC/best_model.pth --config_path tacotron2-DDC/config.json --out_path speech.wav
