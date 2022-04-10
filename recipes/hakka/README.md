@@ -1,8 +1,12 @@
-# 🐸💬 TTS LJspeech Recipes
+# 🐸💬 TTS Hakka Recipes
 
-For running the recipes
+## Pre-trained model:
 
-1. Download the LJSpeech dataset here either manually from [its official website](https://keithito.com/LJ-Speech-Dataset/) or using ```download_ljspeech.sh```.
+tts --text "ngai11 ham55 bun24 ng11 tang24 loi11 io24 ." --model_path run-April-08-2022_01+16AM-0cf3265a/best_model.pth --config_path run-April-08-2022_01+16AM-0cf3265a/config.json --out_path speech.wav
+
+## For running the recipes
+
+1. Prepare your own Hakka dataset.
 2. Go to your desired model folder and run the training.
 
     Running Python files. (Choose the desired GPU ID for your run and set ```CUDA_VISIBLE_DEVICES```)
