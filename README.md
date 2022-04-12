@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/coqui-ai/TTS/main/images/coqui-log-green-TTS.png" height="56"/>
+# <img src="https://github.com/yfliao/TTS/blob/main/recipes/hakka/%E5%9B%9B%E7%B8%A3%E8%85%94%E5%AE%A2%E8%AA%9E%E8%AA%9E%E9%9F%B3%E5%90%88%E6%88%90%E7%B6%B2%E9%A0%81%E5%9C%96.png" height="56"/>
 
 🐸TTS is a library for advanced Text-to-Speech generation. It's built on the latest research, was designed to achieve the best trade-off among ease-of-training, speed and quality.
 🐸TTS comes with pretrained models, tools for measuring dataset quality and already used in **20+ languages** for products and research projects.
