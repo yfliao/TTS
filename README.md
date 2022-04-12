@@ -1,6 +1,6 @@
 # 🐸💬 TTS Hakka Recipes
 
-## Source Code
+## Code
 * https://github.com/yfliao/TTS/tree/main/recipes/hakka/tacotron2-DDC
 
 ## Synthesis using Pre-trained "tacotron2-DDC" model
