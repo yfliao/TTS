@@ -1,4 +1,4 @@
-# 🐸💬 TTS Hakka Recipes
+# 🐸💬 TTS Hakka Recipes (南四縣腔客語語音合成)
 
 ## Code
 * https://github.com/yfliao/TTS/tree/main/recipes/hakka/tacotron2-DDC
