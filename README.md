@@ -18,6 +18,7 @@ pip install -e .
 ## Training
 ```
 conda activate coqui
+
 cd "your path to the Hakka version of Coqui TTS"
 cd TTS/recipes/hakka/tacotron2-DDC
 nohup python train_tacotron_ddc.py &> train_tacotron_ddc.py.log &
