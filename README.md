@@ -29,7 +29,8 @@ python train_tacotron_ddc.py # will crash. since there are no "scale_stats.npy" 
 python ../../../TTS/bin/compute_statistics.py config.json scale_stats.npy
 nohup python train_tacotron_ddc.py &> train_tacotron_ddc.py.log &
 
-PS: To mitigate the impact of configuration inconsistencies between different recording sessions in the given Hakka corpus, some compromises have been made (mainly, mel_max=4000, please check the code or config.json).
+PS: To mitigate the impact of configuration inconsistencies between different recording sessions in the given Hakka corpus,
+some compromises have been made (mainly, sample_rate=16000 ＆ mel_max=4000, please check the code or config.json).
 ```
 
 ## Synthesis using Pre-trained "tacotron2-DDC" model
