@@ -5,12 +5,13 @@
 
 ## Install
 ```
+conda create --name coqui python=3.9
+conda activate coqui
+
 cd "your path to clone the Hakka version of Coqui TTS"
 git clone https://github.com/yfliao/TTS
 
 cd TTS
-conda create --name coqui python=3.9
-conda activate coqui
 pip install -e .
 ```
 
