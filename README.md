@@ -3,10 +3,11 @@
 ## Code
 * https://github.com/yfliao/TTS/tree/main/recipes/hakka/tacotron2-DDC
 
-## Install
+## Install on "Ubuntu 20.04"
 ```
 conda create --name coqui python=3.9
 conda activate coqui
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch-nightly
 
 cd "your path to clone the Hakka version of Coqui TTS"
 git clone https://github.com/yfliao/TTS
